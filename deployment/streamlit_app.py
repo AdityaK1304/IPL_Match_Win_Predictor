@@ -6,7 +6,7 @@ import pickle
 with open("research/ipl_win_predictor.pkl", "rb") as f:
     model = pickle.load(f)
 
-st.title("🏏 IPL Win Probability Predictor")
+st.title(" IPL Win Probability Predictor")
 
 teams = [
     'Chennai Super Kings',
@@ -55,5 +55,5 @@ if st.button("Predict Probability"):
 
         st.subheader("Match Winning Probability")
 
-        st.success(f"{batting_team} 🏏 – {batting_team_prob}%")
-        st.success(f"{bowling_team} 🎯 – {bowling_team_prob}%")
+        st.success(f"{batting_team}   {batting_team_prob}%")
+        st.success(f"{bowling_team}  {bowling_team_prob}%")
