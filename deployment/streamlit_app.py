@@ -55,8 +55,8 @@ option = st.sidebar.radio(
 )
 
 # ================= LOAD DATA =================
-matches = pd.read_csv(r"C:\IPL_Match_Win_Predictor\data\raw\matches.csv")
-deliveries = pd.read_csv(r"C:\IPL_Match_Win_Predictor\data\raw\deliveries.csv")
+matches = pd.read_csv(r"C:\IPL_Match_Win_Predictor\data\matches.csv")
+deliveries = pd.read_csv(r"C:\IPL_Match_Win_Predictor\data\deliveries.csv")
 
 # Precompute innings runs
 innings_runs = deliveries.groupby(['match_id', 'inning', 'batting_team'])['total_runs'].sum().reset_index()
