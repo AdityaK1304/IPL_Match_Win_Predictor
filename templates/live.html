@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Predictor</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<script>
+function updateTeams() {
+    let t1 = document.getElementById("team1").value;
+    let t2 = document.getElementById("team2");
+
+    for (let i = 0; i < t2.options.length; i++) {
+        t2.options[i].disabled = (t2.options[i].value === t1);
+    }
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+<a href="/" class="back-btn">← Back</a>
+
+<h2>Live Match Predictor</h2>
+
+<form action="/predict" method="post">
+
+<div class="grid">
+
+<select id="team1" name="batting_team" onchange="updateTeams()" required>
+<option value="">Batting Team</option>
+{% for t in teams %}<option>{{t}}</option>{% endfor %}
+</select>
+
+<select id="team2" name="bowling_team" required>
+<option value="">Bowling Team</option>
+{% for t in teams %}<option>{{t}}</option>{% endfor %}
+</select>
+
+<select name="city" required>
+<option value="">Select Ground</option>
+{% for v in venues %}<option>{{v}}</option>{% endfor %}
+</select>
+
+<input name="target_runs" placeholder="Target Runs" required>
+<input name="runs_left" placeholder="Runs Left" required>
+<input name="balls_left" placeholder="Balls Left" required>
+<input name="wickets_left" placeholder="Wickets Left" required>
+
+</div>
+
+<button>Predict</button>
+
+</form>
+
+{% if result %}
+<div class="result">
+<h3>{{batting_team}} → {{batting_prob}}%</h3>
+<h3>{{bowling_team}} → {{bowling_prob}}%</h3>
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
